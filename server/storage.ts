@@ -14,7 +14,7 @@ import {
   type Achievement,
   type InsertAchievement
 } from "@shared/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
 import ws from "ws";
 
 neonConfig.webSocketConstructor = ws;
@@ -69,8 +69,10 @@ export class DbStorage implements IStorage {
   async getLeaderboard(difficulty?: string, category?: string, limit: number = 10): Promise<Leaderboard[]> {
     if (difficulty && category) {
       return db.select().from(leaderboard)
-        .where(eq(leaderboard.difficulty, difficulty))
-        .where(eq(leaderboard.category, category))
+        .where(and(
+          eq(leaderboard.difficulty, difficulty),
+          eq(leaderboard.category, category)
+        ))
         .orderBy(desc(leaderboard.score))
         .limit(limit);
     } else if (difficulty) {
