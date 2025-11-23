@@ -1,24 +1,25 @@
-import { useGame } from '@/lib/stores/useGame';
 import { Shield, Lock, AlertTriangle } from 'lucide-react';
 
 export function MenuScreen() {
-  const { start } = useGame();
+  const handleStart = () => {
+    console.log('Quiz started!');
+  };
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center pointer-events-none">
-      <div className="bg-gradient-to-br from-cyan-900/90 to-blue-900/90 backdrop-blur-sm border-2 border-cyan-400 rounded-lg p-8 max-w-2xl w-full mx-4 pointer-events-auto shadow-2xl shadow-cyan-500/50">
+    <div className="fixed inset-0 z-10 flex items-center justify-center overflow-y-auto pointer-events-none">
+      <div className="bg-gradient-to-br from-cyan-900/90 to-blue-900/90 backdrop-blur-sm border-2 border-cyan-400 rounded-lg p-6 md:p-8 max-w-2xl w-full mx-4 my-8 pointer-events-auto shadow-2xl shadow-cyan-500/50">
         <div className="flex items-center justify-center mb-6">
-          <Shield className="w-16 h-16 text-cyan-400 mr-4" />
-          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">
+          <Shield className="w-12 md:w-16 h-12 md:h-16 text-cyan-400 mr-4" />
+          <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">
             Cyber Safety Quiz
           </h1>
         </div>
         
         <div className="mb-8 text-center">
-          <p className="text-xl text-cyan-100 mb-4">
+          <p className="text-lg md:text-xl text-cyan-100 mb-4">
             Test your knowledge of cybersecurity best practices!
           </p>
-          <p className="text-lg text-cyan-200">
+          <p className="text-base md:text-lg text-cyan-200">
             Learn how to protect yourself online through 10 interactive questions.
           </p>
         </div>
@@ -44,8 +45,8 @@ export function MenuScreen() {
         </div>
 
         <button
-          onClick={start}
-          className="w-full bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-400 hover:to-green-400 text-white font-bold text-xl py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg shadow-cyan-500/50"
+          onClick={handleStart}
+          className="w-full bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-400 hover:to-green-400 text-white font-bold text-lg md:text-xl py-3 md:py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg shadow-cyan-500/50 active:scale-95"
         >
           Start Quiz
         </button>
