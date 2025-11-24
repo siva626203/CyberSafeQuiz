@@ -48,30 +48,30 @@ export function QuestionDisplay() {
   };
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center pointer-events-none p-4">
-      <div className="w-full max-w-3xl pointer-events-auto">
-        <div className="bg-gradient-to-br from-slate-900/95 to-blue-900/95 backdrop-blur-md border-2 border-cyan-400 rounded-lg p-6 md:p-8 shadow-2xl shadow-cyan-500/50">
-          <div className="flex justify-between items-center mb-6">
-            <div className="text-cyan-300 font-semibold">
+    <div className="fixed inset-0 z-10 flex items-center justify-center pointer-events-none p-4 overflow-y-auto">
+      <div className="w-full max-w-3xl pointer-events-auto my-auto">
+        <div className="bg-gradient-to-br from-slate-900/95 to-blue-900/95 backdrop-blur-md border-2 border-cyan-400 rounded-lg p-4 sm:p-6 md:p-8 shadow-2xl shadow-cyan-500/50">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div className="text-cyan-300 font-semibold text-sm sm:text-base">
               Question {currentQuestionIndex + 1} / {totalQuestions}
             </div>
-            <div className="bg-cyan-950/50 border border-cyan-500/30 px-4 py-2 rounded-lg">
-              <span className="text-cyan-100">Score: </span>
-              <span className="text-green-400 font-bold text-xl">{score}</span>
+            <div className="bg-cyan-950/50 border border-cyan-500/30 px-3 sm:px-4 py-2 rounded-lg">
+              <span className="text-cyan-100 text-sm">Score: </span>
+              <span className="text-green-400 font-bold text-lg sm:text-xl">{score}</span>
             </div>
           </div>
 
           <div className="mb-4">
             <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg px-3 py-1 inline-block mb-3">
-              <span className="text-cyan-300 text-sm font-medium">{currentQuestion.category}</span>
+              <span className="text-cyan-300 text-xs sm:text-sm font-medium">{currentQuestion.category}</span>
             </div>
           </div>
 
-          <h2 className="text-2xl md:text-3xl font-bold text-cyan-100 mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-cyan-100 mb-6">
             {currentQuestion.question}
           </h2>
 
-          <div className="space-y-3 mb-6">
+          <div className="space-y-2 sm:space-y-3 mb-6">
             {currentQuestion.options.map((option, index) => {
               const isSelected = selectedAnswer === index;
               const isCorrectAnswer = index === currentQuestion.correctAnswer;
@@ -84,7 +84,7 @@ export function QuestionDisplay() {
                   onClick={() => handleAnswerClick(index)}
                   disabled={isShowingExplanation}
                   className={`
-                    w-full text-left p-4 rounded-lg border-2 transition-all duration-200
+                    w-full text-left p-3 sm:p-4 rounded-lg border-2 transition-all duration-200 text-sm sm:text-base
                     ${!isShowingExplanation ? 'hover:border-cyan-400 hover:bg-cyan-500/20 cursor-pointer' : 'cursor-not-allowed'}
                     ${showCorrect ? 'border-green-500 bg-green-500/20' : ''}
                     ${showIncorrect ? 'border-red-500 bg-red-500/20' : ''}
@@ -94,13 +94,13 @@ export function QuestionDisplay() {
                   whileHover={!isShowingExplanation ? { scale: 1.02 } : {}}
                   whileTap={!isShowingExplanation ? { scale: 0.98 } : {}}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-cyan-100 font-medium">{option}</span>
                     {showCorrect && (
-                      <CheckCircle2 className="w-6 h-6 text-green-400 flex-shrink-0 ml-2" />
+                      <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0" />
                     )}
                     {showIncorrect && (
-                      <XCircle className="w-6 h-6 text-red-400 flex-shrink-0 ml-2" />
+                      <XCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0" />
                     )}
                   </div>
                 </motion.button>
@@ -114,20 +114,20 @@ export function QuestionDisplay() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className={`mb-6 p-4 rounded-lg border-2 ${
+                className={`mb-6 p-3 sm:p-4 rounded-lg border-2 text-sm sm:text-base ${
                   isCorrect 
                     ? 'bg-green-500/10 border-green-500/50' 
                     : 'bg-red-500/10 border-red-500/50'
                 }`}
               >
-                <div className="flex items-start mb-2">
+                <div className="flex items-start gap-2 sm:gap-3">
                   {isCorrect ? (
-                    <CheckCircle2 className="w-6 h-6 text-green-400 mr-2 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0 mt-0.5" />
                   ) : (
-                    <XCircle className="w-6 h-6 text-red-400 mr-2 flex-shrink-0 mt-0.5" />
+                    <XCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0 mt-0.5" />
                   )}
-                  <div>
-                    <h3 className={`font-bold text-lg mb-2 ${
+                  <div className="min-w-0">
+                    <h3 className={`font-bold text-base sm:text-lg mb-2 ${
                       isCorrect ? 'text-green-300' : 'text-red-300'
                     }`}>
                       {isCorrect ? 'Correct!' : 'Incorrect'}
@@ -146,17 +146,17 @@ export function QuestionDisplay() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               onClick={handleNext}
-              className="w-full bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-400 hover:to-green-400 text-white font-bold text-lg py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center shadow-lg shadow-cyan-500/50"
+              className="w-full bg-gradient-to-r from-cyan-500 to-green-500 hover:from-cyan-400 hover:to-green-400 text-white font-bold text-base sm:text-lg py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/50"
             >
               {currentQuestionIndex < totalQuestions - 1 ? (
                 <>
                   Next Question
-                  <ChevronRight className="w-5 h-5 ml-2" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </>
               ) : (
                 <>
                   See Results
-                  <ChevronRight className="w-5 h-5 ml-2" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </>
               )}
             </motion.button>

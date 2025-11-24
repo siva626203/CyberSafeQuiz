@@ -5,8 +5,8 @@ export function MenuScreen() {
   const { start } = useGame();
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center">
-      <div className="bg-gradient-to-br from-cyan-900/90 to-blue-900/90 backdrop-blur-sm border-2 border-cyan-400 rounded-lg p-8 max-w-2xl w-full mx-4 pointer-events-auto shadow-2xl shadow-cyan-500/50">
+    <div className="fixed inset-0 z-10 flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-gradient-to-br from-cyan-900/90 to-blue-900/90 backdrop-blur-sm border-2 border-cyan-400 rounded-lg p-8 max-w-2xl w-full my-auto pointer-events-auto shadow-2xl shadow-cyan-500/50">
         <div className="flex items-center justify-center mb-6">
           <Shield className="w-16 h-16 text-cyan-400 mr-4" />
           <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">
