@@ -1,0 +1,6 @@
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index-dev.ts
+
+Re-optimizing dependencies because lockfile has changed
+3:56:32 PM [express] serving on port 5000
